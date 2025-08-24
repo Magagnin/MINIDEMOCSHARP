@@ -1,4 +1,3 @@
-# MINIDEMOCSHARP
 using System; // #biblioteca principal do C#
 
 class Program
@@ -67,5 +66,3 @@ class Program
         Console.WriteLine("\nObrigado por jogar! 🚀");
     }
 }
-
-
