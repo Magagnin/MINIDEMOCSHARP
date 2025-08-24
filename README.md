@@ -1,53 +1,56 @@
-using System; // #biblioteca principal do C#
+[Program.cs](https://github.com/user-attachments/files/21959168/Program.cs)
+using System; // Importa a biblioteca principal do C# (entrada/saída, Random etc.)
 
 class Program
 {
     static void Main(string[] args)
     {
-        // título da janela do console 
+        // Configura título da janela do console
         Console.Title = "Jogo do Número Secreto";
 
-        // cor do título em azul 
+        // Mensagem inicial em azul
         Console.ForegroundColor = ConsoleColor.Cyan;
         Console.WriteLine("=== 🎲 Mini Demo: Jogo do Número Secreto ===\n");
         Console.ResetColor();
 
-        // biblioteca da linguagem que serve para gerar números aleatórios
+        // Cria gerador de números aleatórios
         Random random = new Random();
 
-        // // Sorteia número secreto entre 1 e 10
-        int numeroSecreto = random.Next(1, 11); // 1 a 10
-        int tentativas = 0; // contador de tentativas 
-        int chute = -1; // guarda o palpite 
+        // Sorteia número secreto entre 1 e 10
+        int numeroSecreto = random.Next(1, 11);
 
-        // explica como o jogo funciona 
+        int tentativas = 0; // Conta quantas tentativas foram feitas
+        int chute = -1;     // Guarda o palpite do jogador
+
+        // Explica ao usuário como jogar
         Console.WriteLine("Tente adivinhar o número (entre 1 e 10).\n");
 
-        // enquanto não acertar o número secreto, repete o loop
+        // Enquanto não acertar, continua no loop
         while (chute != numeroSecreto)
         {
-            Console.Write("Digite seu palpite: "); // pede o palpite do usuário
-            string? input = Console.ReadLine();
+            Console.Write("Digite seu palpite: ");
+            string? input = Console.ReadLine(); // Lê o que o usuário digitou
 
-            // tenta converter a entrada para inteiro
+            // Tenta converter para número inteiro (seguro, evita erro se digitar texto)
             if (int.TryParse(input, out chute))
             {
-                tentativas++; // incrementa o contador de tentativas
+                tentativas++; // Conta mais uma tentativa
+
                 if (chute < numeroSecreto)
                 {
-                     // Se o palpite for menor que o número secreto
+                    // Se o palpite for menor que o número secreto
                     Console.ForegroundColor = ConsoleColor.Yellow;
                     Console.WriteLine("➡ O número secreto é MAIOR!\n");
                 }
                 else if (chute > numeroSecreto)
                 {
-                     // Se o palpite for maior que o número secreto
+                    // Se o palpite for maior que o número secreto
                     Console.ForegroundColor = ConsoleColor.Yellow;
                     Console.WriteLine("⬅ O número secreto é MENOR!\n");
                 }
                 else
                 {
-                    // Se o palpite estiver correto
+                    // Acertou!
                     Console.ForegroundColor = ConsoleColor.Green;
                     Console.WriteLine($"✅ Acertou! O número secreto era {numeroSecreto}.");
                     Console.WriteLine($"Tentativas: {tentativas}");
@@ -56,13 +59,14 @@ class Program
             }
             else
             {
-                // Se a entrada não for um número válido
+                // Caso o usuário não digite um número válido
                 Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine("⚠ Entrada inválida! Digite um número inteiro.\n");
                 Console.ResetColor();
             }
         }
-        // mensagem de despedida
+
+        // Mensagem final
         Console.WriteLine("\nObrigado por jogar! 🚀");
     }
 }
